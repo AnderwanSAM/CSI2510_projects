@@ -1,0 +1,120 @@
+package creating_schedule;
+
+import java.util.Scanner;
+public class Cours {
+
+	Timeslot CoursMagistral ;
+	Timeslot CoursMagistral2;
+	Timeslot DGD;
+	Timeslot Laboratoire;
+	Timeslot Tutoriel;
+	String  langue;
+	String nom ;
+	Scanner input  = new Scanner(System.in);
+	
+	boolean dgd = false ; boolean  tutoriel = false ; boolean  laboratoire = false; boolean second_cours_M = false ;
+	Cours()
+	{
+		System.out.println("Nom du Cours : ");
+		this.nom = input.nextLine();
+		System.out.println("Bonjour Veuillez entrer les informations de votre cours Magistral 1  : ");
+		this.CoursMagistral = Initialiser();
+		System.out.println("Avez vous un 2nd cours magistral  ? : ");
+		String reponse = input.nextLine();
+		if(reponse.equalsIgnoreCase("oui")) 
+		{
+			second_cours_M = true;
+			this.CoursMagistral2 = Initialiser();
+		}
+		else 
+		{
+			System.out.println("Suivant alors XD ");
+		}
+		System.out.println("Avez vous un DGD ? : ");
+		 reponse = input.nextLine();
+		if(reponse.equalsIgnoreCase("oui")) 
+		{
+			dgd = true;
+			this.DGD = Initialiser();
+		}
+		else 
+		{
+			System.out.println("Suivant alors XD ");
+		}
+		System.out.println("Avez vous un Laboratoire ? : ");
+		reponse = input.nextLine();
+		if(reponse.equalsIgnoreCase("oui")) 
+		{
+			laboratoire = true ;
+			this.Laboratoire = Initialiser();
+		}
+		else 
+		{
+			System.out.println("Suivant alors XD ");
+		}
+		System.out.println("Avez vous un Tutoriel ? : ");
+		reponse = input.nextLine();
+		if(reponse.equalsIgnoreCase("oui")) 
+		{
+			tutoriel = true;
+			this.Tutoriel = Initialiser();
+		}
+		else 
+		{
+			System.out.println("Suivant alors XD ");
+		}
+		System.out.println("Veuillez entrez la langue du cours : ");
+		this.langue = input.nextLine();
+		
+		
+	
+		
+	}
+	
+
+	public Timeslot Initialiser() 
+	{
+		
+		System.out.println("Jour: ");
+		String jour = input.nextLine();
+		System.out.println("heure Debut | coller les chiffres sans  lettres ");
+		String h_d = input.nextLine();
+		System.out.println("heure fin | coller les chiffres sans lettres ");
+		String h_f = input.nextLine();
+		Timeslot a = new Timeslot(jour,h_d,h_f);
+		return a ;
+	}
+	
+	public void afficher_le_cours() 
+	{
+		System.out.println("Nom du cours " + this.nom);
+		System.out.println("langue du cours " + this.langue);
+		System.out.println("Debut du cours Magistral  1  " + this.CoursMagistral.getHeureDebut());
+		System.out.println("fin du cours Magistral  1 " + this.CoursMagistral.getHeureFin());
+		if (second_cours_M) 
+		{
+			System.out.println("Debut du cours Magistral  2  " + this.CoursMagistral2.getHeureDebut());
+			System.out.println("fin du cours Magistral  2 " + this.CoursMagistral2.getHeureFin());
+		}
+		if(dgd) 
+		{
+			System.out.println("Debut du DGD  " + this.DGD.getHeureDebut());
+			System.out.println("fin du DGD " + this.DGD.getHeureFin());
+		}
+		if(laboratoire) 
+		{
+			System.out.println("Debut du lab  " + this.Laboratoire.getHeureDebut());
+			System.out.println("fin du lab " + this.Laboratoire.getHeureFin());
+		}
+		if(tutoriel) 
+		{
+			System.out.println("Debut du Tutoriel  " + this.Tutoriel.getHeureDebut());
+			System.out.println("fin du Tutoriel " + this.Tutoriel.getHeureFin());
+		}
+	}
+	
+	public static void main(String[] args) {
+		Cours a = new Cours();
+		a.afficher_le_cours();
+	}
+}

@@ -1,0 +1,80 @@
+package projetCSI2510_300209487;
+
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.Stack;
+
+//import projectCSI2510_300209487.GaleShapley;
+
+public class Gale {
+	
+	Gale(){};
+	
+	static int n ;
+	static Stack <Employeur> Sue = new Stack<Employeur>(); 
+	
+	public static void Initialize( String file_name) 
+	{
+		BufferedReader lecteur;
+		try {
+			lecteur = new BufferedReader(new FileReader(file_name));
+			//lire la premiere ligne correspondant au nombre n et le convertir en int 
+			String line = lecteur.readLine();
+			String nombre = line;
+			n = Integer.parseInt(nombre);	
+			
+			//Empiler les employeur 
+			
+			for (int i = 0 ; i < n ;i++) 
+			{
+				//creer un employeur temporaire 
+				Employeur e_temporaire = new Employeur(i,lecteur.readLine());
+				//Empiler cet employeur
+				Sue.add(e_temporaire);
+			}
+			//afficher les employeur 
+			for(int i = 0 ; i < n ; i++) 
+			{
+				Employeur x = Sue.pop();
+				System.out.println(x.index + " " + x.name);
+			}
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			lecteur.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public static void main(String[] args) {
+		Gale a = new Gale();
+		a.Initialize("test_N3.txt");
+		
+		
+	}
+	
+	
+
+}

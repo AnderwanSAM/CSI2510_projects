@@ -1,0 +1,20 @@
+import java.util.ArrayList;
+
+public class Knapsack {
+
+	static int weight;
+	public static ArrayList<Item> objects ;
+	
+	Knapsack()
+	{
+		objects = new ArrayList<Item>();
+	}
+	public  int getWeight() 
+	{
+		return weight;
+	}
+	public void setWeight(int a ) 
+	{
+		weight = a ;
+	}
+}

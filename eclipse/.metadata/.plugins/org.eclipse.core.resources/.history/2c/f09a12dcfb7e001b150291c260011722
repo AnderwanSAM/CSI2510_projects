@@ -1,0 +1,30 @@
+package giovanniProject;
+
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
+
+public class Test {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+        save("test.txt");
+	}
+	
+	public static void save(String file_name) 
+	   {
+		   try {
+			PrintWriter writer = new PrintWriter(file_name);
+			for (int i = 0 ; i < 10 ; i++) 
+			{
+				writer.println("test");
+			}
+			
+			writer.close();
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		   
+	   }
+
+}

@@ -1,0 +1,81 @@
+package creating_schedule;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+
+
+public class Schedule_maker {
+	
+ //creer des listes pour garder les 5 differents types de cours 
+	
+	static List<Cours> liste_cours1 = new ArrayList<Cours>();
+	static List<Cours> liste_cours2 = new ArrayList<Cours>();
+	static List<Cours> liste_cours3 = new ArrayList<Cours>();
+	static List<Cours> liste_cours4 = new ArrayList<Cours>();
+	static List<Cours> liste_cours5 = new ArrayList<Cours>();
+
+	public static void recuperer_les_cours() 
+	{
+		Scanner input = new Scanner(System.in);
+		String poursuivre = "Y";
+		
+		//tant que l'utilisateur souhaite, creer des cours et les inserer dans les listes en fonction de leur rang 
+		do 
+		{
+			System.out.println("Quel type de cours est ce ? 1.2.3.4.5 :");
+			String t = input.nextLine();
+			int n = Integer.parseInt(t);
+			Cours a = new Cours();
+			switch(n) 
+			{
+			case 1 : 
+				liste_cours1.add(a);
+				break;
+			case 2 : 
+				liste_cours2.add(a);
+				break;
+			case 3 : 
+				liste_cours3.add(a);
+				break;
+			case 4 :
+				liste_cours4.add(a);
+				break;
+			case 5 : 
+				liste_cours5.add(a);
+				break;
+			default : 
+				System.out.println("Mauvais choix de type de cours");
+				break; 
+			}
+			
+			
+			
+			System.out.println("Poursuivre  ? : ");
+			String choix  = input.nextLine();
+			if(choix.equalsIgnoreCase(poursuivre)) 
+			{
+				
+			}
+			else
+			{
+				poursuivre = choix;
+			}
+			
+		}while(poursuivre == "Y");
+		
+		
+	}
+	
+	
+	public static void main(String[] args) {
+		Scanner in = new Scanner(System.in);
+		recuperer_les_cours();
+		for(int i =0 ; i<liste_cours1.size();i++) 
+		{
+			System.out.println("1");
+			liste_cours1.get(i).afficher_le_cours();
+		}
+		
+	}
+}

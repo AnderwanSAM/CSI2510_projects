@@ -1,0 +1,75 @@
+package creating_schedule;
+
+import java.util.Scanner;
+public class Cours {
+
+	Timeslot CoursMagistral ;
+	Timeslot DGD;
+	Timeslot Laboratoire;
+	Timeslot Tutoriel;
+	String  langue;
+	
+	Scanner input  = new Scanner(System.in);
+	
+	Cours()
+	{
+		
+		System.out.println("Bonjour Veuillez entrer les informations de votre cours Magistral : ");
+		Initialiser(this.CoursMagistral);
+		System.out.println("Avez vous un DGD ? : ");
+		String reponse = input.nextLine();
+		if(reponse.equalsIgnoreCase("oui")) 
+		{
+			Initialiser(this.DGD);
+		}
+		else 
+		{
+			System.out.println("Suivant alors XD ");
+		}
+		System.out.println("Avez vous un Laboratoire ? : ");
+		reponse = input.nextLine();
+		if(reponse.equalsIgnoreCase("oui")) 
+		{
+			Initialiser(this.Laboratoire);
+		}
+		else 
+		{
+			System.out.println("Suivant alors XD ");
+		}
+		System.out.println("Avez vous un Tutoriel ? : ");
+		reponse = input.nextLine();
+		if(reponse.equalsIgnoreCase("oui")) 
+		{
+			Initialiser(this.Tutoriel);
+		}
+		else 
+		{
+			System.out.println("Suivant alors XD ");
+		}
+		System.out.println("Veuillez entrez la langue du cours : ");
+		this.langue = input.nextLine();
+		
+		
+	
+		
+	}
+	
+
+	public void Initialiser(Timeslot a ) 
+	{
+		
+		System.out.println("Jour: ");
+		String jour = input.nextLine();
+		System.out.println("heure Debut | coller les chiffres sans  lettres ");
+		String h_d = input.nextLine();
+		System.out.println("heure fin | coller les chiffres sans lettres ");
+		String h_f = input.nextLine();
+		a = new Timeslot(jour,h_d,h_f);
+		
+	}
+	
+	public static void main(String[] args) {
+		Cours a = new Cours();
+		
+	}
+}

@@ -1,0 +1,201 @@
+package creating_schedule;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+
+
+public class Schedule_maker {
+	
+ //creer des listes pour garder les 5 differents types de cours 
+	
+	static ArrayList<Cours> liste_cours1 = new ArrayList<Cours>();
+	static ArrayList<Cours> liste_cours2 = new ArrayList<Cours>();
+	static ArrayList<Cours> liste_cours3 = new ArrayList<Cours>();
+	static ArrayList<Cours> liste_cours4 = new ArrayList<Cours>();
+	static ArrayList<Cours> liste_cours5 = new ArrayList<Cours>();
+
+	static List<Horaire>liste_horaires_trouvees =new ArrayList<Horaire>();
+	
+	public static void recuperer_les_cours() 
+	{
+		Scanner input = new Scanner(System.in);
+		String poursuivre = "Y";
+		
+		//tant que l'utilisateur souhaite, creer des cours et les inserer dans les listes en fonction de leur rang 
+		do 
+		{
+			for(int i =0 ; i< 3;i++) { System.out.println(" ");}
+			System.out.println("Quel type de cours est ce ? 1.2.3.4.5 :");
+			String t = input.nextLine();
+			int n = Integer.parseInt(t);
+			Cours a = new Cours();
+			switch(n) 
+			{
+			case 1 : 
+				liste_cours1.add(a);
+				break;
+			case 2 : 
+				liste_cours2.add(a);
+				break;
+			case 3 : 
+				liste_cours3.add(a);
+				break;
+			case 4 :
+				liste_cours4.add(a);
+				break;
+			case 5 : 
+				liste_cours5.add(a);
+				break;
+			default : 
+				System.out.println("Mauvais choix de type de cours");
+				break; 
+			}
+			
+			
+			
+			System.out.println("Poursuivre  ? : ");
+			String choix  = input.nextLine();
+			if(choix.equalsIgnoreCase(poursuivre)) 
+			{
+				
+			}
+			else
+			{
+				poursuivre = choix;
+			}
+			
+		}while(poursuivre == "Y");
+		
+		
+	}
+	
+	
+	
+	
+	public static void main(String[] args) {
+		Scanner in = new Scanner(System.in);
+		recuperer_les_cours();
+		for(int i =0 ; i<liste_cours1.size();i++) 
+		{
+			
+		}
+		for(int i =0 ; i<liste_cours2.size();i++) 
+		{
+			
+		}
+		for(int i =0 ; i<liste_cours3.size();i++) 
+		{
+			
+		}
+		for(int i =0 ; i<liste_cours4.size();i++) 
+		{
+			
+		}
+		for(int i =0 ; i<liste_cours5.size();i++) 
+		{
+			
+		}
+		
+		/*Creer_des_horaires(liste_cours1,liste_cours2,liste_cours3,liste_cours4,liste_cours5);
+		//afficher les horaires trouves
+		for(int i =0 ; i < liste_horaires_trouvees.size(); i++) 
+		{
+			liste_horaires_trouvees.get(i).afficher_horaire();
+			System.out.println(" ");   
+		}*/
+	
+	}
+	
+	
+	public static void Creer_des_horaires(ArrayList<Cours> liste1, ArrayList<Cours> liste2, ArrayList<Cours> liste3, ArrayList<Cours> liste4 , ArrayList<Cours> liste5) 
+	{
+		
+		int count = 0;
+		//pour chaque element de la liste 1
+		for(int i = 0 ; i< liste1.size(); i++) 
+		{
+			
+			//trouver un cours 2 avec qui il n'est pas en conflit
+			boolean conflit = true ;
+			for(int j = 0; j< liste2.size();i++) 
+			{
+				if (!liste1.get(i).estEnConflitavec(liste2.get(j))) //les mettre dans la pile d'horaire
+				{
+					Horaire a = new Horaire();
+					a.schedule.add(liste1.get(i));a.schedule.add(liste2.get(j));
+					liste_horaires_trouvees.add(a);
+					
+				}
+			}
+			// a la fin la liste d'horaire contient toutes les combinaisons fonctionnelles entre l'element en question de 1 et 2
+			//trouver un cours 3 qui n'est pas en conflit avec les precedents
+			
+			//* pour chacun des horaires deja valide , essayer de touver un cours 3
+			for(int j = 0 ; j< liste_horaires_trouvees.size();i++) 
+			{
+				for(int k = 0 ; k<liste3.size(); k++) 
+				{
+					if(liste_horaires_trouvees.get(j).schedule.size() == 2) 
+					{
+						if(!liste3.get(k).estEnConflitavec(liste_horaires_trouvees.get(j).schedule.get(0)) && !liste3.get(k).estEnConflitavec(liste_horaires_trouvees.get(j).schedule.get(1))) 
+						{
+							//il n est pas en conflit avec les 2 premiers cours, on peut l'ajouter a l'horaire 
+							liste_horaires_trouvees.get(j).schedule.add(liste3.get(k));
+							break; //pour eviter d'avoir plusieurs cours 3 dans un horaire 
+						}
+						
+					}
+					
+				}
+			}
+			
+			//a la fin la liste contient les ombinaisons fonctionnelles entre les cours 1 2 et 3
+			
+			//* ajoutons les 4 qui ne sont pas en conflit 
+			//trouver un cours 4 avec qui il n est pas en conflit 
+			for(int j = 0 ; j< liste_horaires_trouvees.size();i++) 
+			{
+				for(int k = 0 ; k<liste4.size(); k++) 
+				{
+					if(liste_horaires_trouvees.get(j).schedule.size() == 3) 
+					{
+						if(!liste4.get(k).estEnConflitavec(liste_horaires_trouvees.get(j).schedule.get(0)) && !liste4.get(k).estEnConflitavec(liste_horaires_trouvees.get(j).schedule.get(1)) && !liste4.get(k).estEnConflitavec(liste_horaires_trouvees.get(j).schedule.get(2))) 
+						{
+							//il n est pas en conflit avec les 2 premiers cours, on peut l'ajouter a l'horaire 
+							liste_horaires_trouvees.get(j).schedule.add(liste4.get(k));
+							break ;
+						}
+						
+					}
+					
+				}
+			}
+			
+			
+			//trouver un cous 5 avec qui il n est pas en conflit 
+			for(int j = 0 ; j< liste_horaires_trouvees.size();i++) 
+			{
+				for(int k = 0 ; k<liste5.size(); k++) 
+				{
+					if(liste_horaires_trouvees.get(j).schedule.size() == 4) 
+					{
+						if(!liste5.get(k).estEnConflitavec(liste_horaires_trouvees.get(j).schedule.get(0)) && !liste5.get(k).estEnConflitavec(liste_horaires_trouvees.get(j).schedule.get(1)) && !liste5.get(k).estEnConflitavec(liste_horaires_trouvees.get(j).schedule.get(2)) && !liste5.get(k).estEnConflitavec(liste_horaires_trouvees.get(j).schedule.get(3))) 
+						{
+							//il n est pas en conflit avec les 2 premiers cours, on peut l'ajouter a l'horaire 
+							liste_horaires_trouvees.get(j).schedule.add(liste5.get(k));
+							break ;
+						}
+						
+					}
+					
+				}
+			}
+			
+		}
+		
+		
+	}
+	
+	
+}

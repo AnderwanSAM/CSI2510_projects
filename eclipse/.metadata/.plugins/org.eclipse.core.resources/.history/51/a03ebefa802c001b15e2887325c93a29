@@ -1,0 +1,25 @@
+package creating_schedule;
+
+import java.util.ArrayList;
+import java.util.List;
+
+/*
+ * Un horaire est un composee de 5 cours qui ne sont pas en conflit 
+ * */
+public class Horaire {
+	Horaire(){};
+
+	public static List<Cours> schedule = new ArrayList<Cours>();
+	
+	public static void afficher_horaire() 
+	{
+		for ( int j =0 ; j< 3; j++) {System.out.println(" ");}
+		System.out.println("Nouvel Horaire");
+		System.out.println(" ");
+		for (int i = 0 ; i < schedule.size();i++) 
+		{
+			schedule.get(i).afficher_le_cours();
+			for ( int j =0 ; j< 3; j++) {System.out.println(" ");}
+		}
+	}
+}
